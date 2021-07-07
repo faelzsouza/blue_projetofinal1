@@ -37,8 +37,10 @@ class PersonagemPrincipal(Personagem):
             elif resposta == 3:
                 self.stamina -= 2     
                 self.tempo.passarHora(9)
+                print("Você conseguiu entrar na casa da vizinha Hebe, cuidado para não acordá-la")
+                self.eventoestoque()
             else:
-                print("Vc não tem stamina para concluir essa tarefa")
+                print("Opa! Parece que você não tem stamina para concluir essa tarefa")
                 if self.inventario ["Alimento"] > 0:             
                     print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer para se recuperar? S/N")
                     resp = input()
@@ -193,7 +195,32 @@ class PersonagemPrincipal(Personagem):
                 return
         
         print("Vc não conseguiu abrir o cofre... tururu! ")
-    
+
+#----------------------------------------------------------------------------------------------
+
+    def abrirEstoque(self):
+
+            print (f"Parece que Hebe tem um estoque de comida guardado! Quando você clica na fechadura eletrônica a seguinte mensagem aparece:\n 'Olá gracinha! para abrir o estoque responda a charada:\nMeu avô tem 5 filhos, cada filho tem 3 filhos. Quantos primos eu tenho?\nQue velha doida, né?")
+            
+            resp = int(input("De qualquer forma digite a resposta para abrir o cofre: "))
+            if resp == (12):
+                print
+                print("Deu certo!")
+                self.inventario ["Alimento"] += 50
+                return
+            else:
+                print("A senha está errada e o alarme disparou! É melhor você correr pra casa!")
+        
+       
+    def eventoestoque(self):
+
+        sorteio = random.randint(0, 99)
+
+        if sorteio < 40:
+            self.abrirEstoque()
+
+        
+    #----------------------------------------------------------------------------------------------------------
         
 
         
