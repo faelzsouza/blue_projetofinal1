@@ -1,14 +1,13 @@
-import personagem
+from personagem import Personagem
 
-class npc(personagem):
-    def __init__(self, nome, sexo, funcao):
+class npc(Personagem):
+    def __init__(self, nome, sexo, funcao = "npc"):
         super().__init__(nome, sexo)
         self.funcao = funcao
 
-vizinha = npc.vizinha("Hebe Camargo", "Feminino", "Vizinha")
+vizinha = npc("Hebe Camargo", "Feminino", "vizinha")
 
-dono = npc.ferrovelho("Xaropinho", "Masculino", "Dono do Ferro Velho")
+dono = npc("Xaropinho", "Masculino", "Dono do Ferro Velho")
 
-conjunge = npc.conjuge("Eva", "Feminino", "Parceira de Cópula")
-
+conjunge = npc("Eva", "Feminino", "Parceira de Cópula")
  
