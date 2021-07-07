@@ -6,3 +6,7 @@ class Personagem:
 
 
 class teste(Carlos)
+testeRafa = Personagem("Rafa", "M")
+
+    def testeFernando():
+        pass    
