@@ -161,8 +161,13 @@ class PersonagemPrincipal(Personagem):
 
         self.stamina += horasDormidas
 
-        if self.stamina > 10:
+        if self.stamina >= 10:
             self.stamina = 10
+            self.acordar()
+
+    def acordar(self):
+        if self.stamina >= 10:
+            print("Você está com {self.estamina} pontos de stamina. Não está cansado! Tente fazer algumas tarefas")
 
     def info(self):
 
@@ -200,7 +205,7 @@ class PersonagemPrincipal(Personagem):
 
     def abrirEstoque(self):
 
-            print (f"Parece que Hebe tem um estoque de comida guardado! Quando você clica na fechadura eletrônica a seguinte mensagem aparece:\n 'Olá gracinha! para abrir o estoque responda a charada:\nMeu avô tem 5 filhos, cada filho tem 3 filhos. Quantos primos eu tenho?\nQue velha doida, né?")
+            print (f"Parece que Hebe tem um estoque de comida guardado! Quando você clica na fechadura eletrônica a seguinte mensagem aparece:\n 'Olá gracinha! para abrir o estoque responda a charada:\nMeu avô tem 5 filhos, cada filho tem 3 filhos. Quantos primos eu tenho?\nQue velha doida, né?\n")
             
             resp = int(input("De qualquer forma digite a resposta para abrir o cofre: "))
             if resp == (12):
