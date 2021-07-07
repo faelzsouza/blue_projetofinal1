@@ -5,3 +5,6 @@ class Personagem:
         self.sexo = sexo
 
 testeRafa = Personagem("Rafa", "M")
+
+    def testeFernando():
+        pass    
