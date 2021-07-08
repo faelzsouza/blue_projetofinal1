@@ -216,7 +216,9 @@ class PersonagemPrincipal(Personagem):
                      
 
 
+    def relogio (self):
 
+        return self.tempo.dia
 
 
 

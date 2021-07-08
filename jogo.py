@@ -15,8 +15,8 @@ class Jogo:
 
         self.interface.introducao()
 
-        continuar = True
-        while continuar == True:
+        
+        while self.personagem.relogio() < 3:
 
             
             print("LISTA DE TAREFAS")    
@@ -32,15 +32,8 @@ class Jogo:
             elif resposta == 2:
                 self.personagem.buscarEquipamentos()
 
-
-            if self.personagem.buscarAlimento() == False:
-                self.fimDoJogo()
-                continuar = False
-            elif self.personagem.buscarEquipamentos() == False:
-                self.fimDoJogo()
-                continuar = False
-   
-                
+           
+        self.fimDoJogo()    
                 
 
     def fimDoJogo(self):
