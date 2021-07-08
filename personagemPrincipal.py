@@ -78,11 +78,11 @@ class PersonagemPrincipal(Personagem):
                             print("quantas horas deseja dormir?")
                             d = int(input())
                             self.dormir(d)
-                            break
+                            return
                         elif resp == 'n':
                             print("Vc desmaiou, pois não tem força") 
                             self.desmaiar()
-                            break  
+                            return 
                         
                                                         
                 else:      
@@ -92,11 +92,11 @@ class PersonagemPrincipal(Personagem):
                         print("quantas horas deseja dormir?")
                         d = int(input())
                         self.dormir(d)
-                        break
+                        return
                     elif resp == 'n':
                         print("Vc desmaiou, pois não tem força") 
                         self.desmaiar()
-                        break
+                        return
 
 
             sorteio = random.randint(1,3)
@@ -183,11 +183,11 @@ class PersonagemPrincipal(Personagem):
                             print("quantas horas deseja dormir?")
                             d = int(input())
                             self.dormir(d)
-                            break
+                            return
                         elif resp == 'n':
                             print("Vc desmaiou, pois não tem força") 
                             self.desmaiar()
-                            break  
+                            return
                         
                                                         
                 else:      
@@ -197,11 +197,11 @@ class PersonagemPrincipal(Personagem):
                         print("quantas horas deseja dormir?")
                         d = int(input())
                         self.dormir(d)
-                        break
+                        return
                     elif resp == 'n':
                         print("Vc desmaiou, pois não tem força") 
                         self.desmaiar()
-                        break
+                        return
                     
 
             sorteio = random.randint(1,3)
