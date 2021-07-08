@@ -1,6 +1,7 @@
 from personagem import Personagem
 from tempo import Tempo
 import random
+from personagemnpc import npc
 
 class PersonagemPrincipal(Personagem):
 
@@ -38,7 +39,7 @@ class PersonagemPrincipal(Personagem):
                 self.stamina -= 2     
                 self.tempo.passarHora(9)
                 print("Você conseguiu entrar na casa da vizinha Hebe, cuidado para não acordá-la")
-                self.eventoestoque()
+                npc.eventoestoque()
             else:
                 print("Opa! Parece que você não tem stamina para concluir essa tarefa")
                 if self.inventario ["Alimento"] > 0:             
@@ -98,7 +99,7 @@ class PersonagemPrincipal(Personagem):
             if resposta == 1 and self.stamina >= 2:
                 self.stamina -= 2
                 self.tempo.passarHora(9)
-                self.eventoCofre()
+                npc.eventoCofre()
             elif resposta == 2 and self.stamina >= 5:
                 self.stamina -= 5
                 self.tempo.passarHora(9)
@@ -171,58 +172,17 @@ class PersonagemPrincipal(Personagem):
 
     def info(self):
 
-        print("intentario:", self.inventario)
+        print("inventário:", self.inventario)
         print("dia:", self.tempo.dia)
         print("hora:", self.tempo.hora)
         print("stamina:",self.stamina)
         print()
 
-    def eventoCofre(self):
-
-        lista = list(range(20))
-        sorteio = random.randint(0, 99)
-
-        if sorteio in lista:
-            self.abrirCofre()
-
-
-    def abrirCofre(self):
-
-        print ("Vc achou um cofre..... ")
-
-        for i in range(5):
-
-            senha = 1234
-            chute = input("Digite a senha: ")
-
-            if senha == chute:
-                self.inventario ["Equipamento"] += 50
-                return
-        
-        print("Vc não conseguiu abrir o cofre... tururu! ")
+    
 
 #----------------------------------------------------------------------------------------------
 
-    def abrirEstoque(self):
-
-            print (f"Parece que Hebe tem um estoque de comida guardado! Quando você clica na fechadura eletrônica a seguinte mensagem aparece:\n 'Olá gracinha! para abrir o estoque responda a charada:\nMeu avô tem 5 filhos, cada filho tem 3 filhos. Quantos primos eu tenho?\nQue velha doida, né?\n")
-            
-            resp = int(input("De qualquer forma digite a resposta para abrir o cofre: "))
-            if resp == (12):
-                print
-                print("Deu certo!")
-                self.inventario ["Alimento"] += 50
-                return
-            else:
-                print("A senha está errada e o alarme disparou! É melhor você correr pra casa!")
-        
-       
-    def eventoestoque(self):
-
-        sorteio = random.randint(0, 99)
-
-        if sorteio < 40:
-            self.abrirEstoque()
+    
 
         
     #----------------------------------------------------------------------------------------------------------
