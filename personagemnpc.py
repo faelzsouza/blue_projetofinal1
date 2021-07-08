@@ -2,7 +2,7 @@ from personagem import Personagem
 import random
 import personagemPrincipal
 
-class npc(Personagem):
+class Npc(Personagem):
     def __init__(self, nome, sexo, funcao = "npc"):
         super().__init__(nome, sexo)
         self.funcao = funcao
@@ -15,8 +15,7 @@ class npc(Personagem):
             if resp == (12):
                 print
                 print("Deu certo!")
-                personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] += 50
-                return
+                return 50
             else:
                 print("A senha está errada e o alarme disparou! É melhor você correr pra casa!")
         
@@ -46,8 +45,7 @@ class npc(Personagem):
             chute = input("Digite a senha: ")
 
             if senha == chute:
-                personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] += 50
-                return
+                return 50
         
         print("Vc não conseguiu abrir o cofre... tururu! ")
 

@@ -1,4 +1,5 @@
 from personagem import Personagem
+from personagemnpc import Npc
 from tempo import Tempo
 import random
 
@@ -6,7 +7,8 @@ import random
 # from personagemnpc import npc
 
 class PersonagemPrincipal(Personagem):
-    
+
+    npc = Npc("Maria", "F")
     tempo = Tempo()
 
     def __init__(self, nome, sexo):
@@ -255,6 +257,19 @@ class PersonagemPrincipal(Personagem):
         if self.stamina >= 10:
             print("Você está com {self.estamina} pontos de stamina. Não está cansado! Tente fazer algumas tarefas")
             print()
+
+
+    def estoqueNPC(self):
+
+        self.npc.eventoestoque()
+        self.inventario ["Alimento"] += self.npc.eventoestoque()
+
+
+    def cofreNPC(self):
+
+        self.npc.eventoCofre()
+        self.inventario ["Equipamento"] += self.npc.eventoCofre()
+
 
 
     def info(self):
