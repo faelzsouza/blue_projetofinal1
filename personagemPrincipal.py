@@ -14,11 +14,17 @@ class PersonagemPrincipal(Personagem):
         self.stamina = 10
         self.inventario = {"Alimento":0, "Equipamento":0}    
 
+    def getAlimento(self):
+        return self.inventario  ["Alimento"]  
+
+    def getEquipamento(self):
+        return self.inventario ["Equipamento"]    
+    
 
     def buscarAlimento(self):
 
         continuar = True
-        while continuar == True and self.tempo.dia < 3:    
+        while continuar == True and self.tempo.getDia() < 3:    
 
             self.info()
 
@@ -36,17 +42,17 @@ class PersonagemPrincipal(Personagem):
             if resposta == 1 and self.stamina >= 3:
                 self.stamina -= 3
                 self.tempo.passarHora(9)
-                if self.tempo.dia >= 3:
+                if self.tempo.getDia() >= 3:
                     return 
             elif resposta == 2 and self.stamina >= 1:
                 self.stamina -= 1
                 self.tempo.passarHora(9)
-                if self.tempo.dia >= 3:
+                if self.tempo.getDia() >= 3:
                     return 
             elif resposta == 3 and self.stamina >= 3:
                 self.stamina -= 2     
                 self.tempo.passarHora(9)
-                if self.tempo.dia >= 3:
+                if self.tempo.getDia() >= 3:
                     return 
             else:
 
@@ -72,11 +78,11 @@ class PersonagemPrincipal(Personagem):
                             print("quantas horas deseja dormir?")
                             d = int(input())
                             self.dormir(d)
-                            break
+                            return
                         elif resp == 'n':
                             print("Vc desmaiou, pois não tem força") 
                             self.desmaiar()
-                            break  
+                            return 
                         
                                                         
                 else:      
@@ -86,11 +92,11 @@ class PersonagemPrincipal(Personagem):
                         print("quantas horas deseja dormir?")
                         d = int(input())
                         self.dormir(d)
-                        break
+                        return
                     elif resp == 'n':
                         print("Vc desmaiou, pois não tem força") 
                         self.desmaiar()
-                        break
+                        return
 
 
             sorteio = random.randint(1,3)
@@ -120,17 +126,10 @@ class PersonagemPrincipal(Personagem):
 
 
 
-    
-
-
-
-
-
-
     def buscarEquipamentos(self):
 
         continuar = True
-        while continuar == True and self.tempo.dia < 3:    
+        while continuar == True and self.tempo.getDia() < 3:    
             
             self.info()
 
@@ -148,17 +147,17 @@ class PersonagemPrincipal(Personagem):
             if resposta == 1 and self.stamina >= 2:
                 self.stamina -= 2
                 self.tempo.passarHora(9)
-                if self.tempo.dia >= 3:
+                if self.tempo.getDia() >= 3:
                     return 
             elif resposta == 2 and self.stamina >= 5:
                 self.stamina -= 5
                 self.tempo.passarHora(9)
-                if self.tempo.dia >= 3:
+                if self.tempo.getDia() >= 3:
                     return 
             elif resposta == 3 and self.stamina >= 3:
                 self.stamina -= 3  
                 self.tempo.passarHora(9)
-                if self.tempo.dia >= 3:
+                if self.tempo.getDia() >= 3:
                     return 
             else:
 
@@ -184,11 +183,11 @@ class PersonagemPrincipal(Personagem):
                             print("quantas horas deseja dormir?")
                             d = int(input())
                             self.dormir(d)
-                            break
+                            return
                         elif resp == 'n':
                             print("Vc desmaiou, pois não tem força") 
                             self.desmaiar()
-                            break  
+                            return
                         
                                                         
                 else:      
@@ -198,11 +197,11 @@ class PersonagemPrincipal(Personagem):
                         print("quantas horas deseja dormir?")
                         d = int(input())
                         self.dormir(d)
-                        break
+                        return
                     elif resp == 'n':
                         print("Vc desmaiou, pois não tem força") 
                         self.desmaiar()
-                        break
+                        return
                     
 
             sorteio = random.randint(1,3)
@@ -232,28 +231,22 @@ class PersonagemPrincipal(Personagem):
 
 
     def relogio (self):
-
-        return self.tempo.dia
+        return self.tempo.getDia()
 
 
     def comer (self, comida):
-
         self.inventario ["Alimento"] -= comida       
         self.stamina += comida
 
         
     def dormir(self, horasDormidas):
-
         self.tempo.passarHora(horasDormidas)
-
         self.stamina += horasDormidas
-
         if self.stamina >= 10:
             self.stamina = 10
     
 
     def desmaiar(self):
-
         self.stamina = 8
         self.tempo.passarHora(8)
     
@@ -263,11 +256,11 @@ class PersonagemPrincipal(Personagem):
             print("Você está com {self.estamina} pontos de stamina. Não está cansado! Tente fazer algumas tarefas")
             print()
 
-    def info(self):
 
+    def info(self):
         print("inventário:", self.inventario)
-        print("dia:", self.tempo.dia)
-        print("hora:", self.tempo.hora)
+        print("dia:", self.tempo.getDia())
+        print("hora:", self.tempo.getHora())
         print("stamina:",self.stamina)
         print()
 

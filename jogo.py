@@ -38,11 +38,11 @@ class Jogo:
 
     def fimDoJogo(self):
 
-        if self.personagem.inventario ["Alimento"] >= 20 and self.personagem.inventario ["Equipamento"] >= 20:
+        if self.personagem.getAlimento() >= 20 and self.personagem.getEquipamento() >= 20:
             return self.interface.venceu
-        elif self.personagem.inventario ["Alimento"] >= 20 and self.personagem.inventario ["Equipamento"] < 20:
+        elif self.personagem.getAlimento() >= 20 and self.personagem.getEquipamento() < 20:
             return self.interface.perder1()
-        elif self.personagem.inventario ["Alimento"] < 20 and self.personagem.inventario ["Equipamento"] >= 20:
+        elif self.personagem.getAlimento() < 20 and self.personagem.getEquipamento() >= 20:
             return self.interface.perder2()
         else:
             return self.interface.perder3()
