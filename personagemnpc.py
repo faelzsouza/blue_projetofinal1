@@ -1,4 +1,5 @@
 from personagem import Personagem
+import random
 
 class npc(Personagem):
     def __init__(self, nome, sexo, funcao = "npc"):
@@ -50,9 +51,9 @@ class npc(Personagem):
         
         print("Vc não conseguiu abrir o cofre... tururu! ")
 
-    vizinha = npc("Hebe Camargo", "Feminino", "vizinha")
+    # vizinha = npc("Hebe Camargo", "Feminino", "vizinha")
 
-    dono = npc("Xaropinho", "Masculino", "Dono do Ferro Velho")
+    # dono = npc("Xaropinho", "Masculino", "Dono do Ferro Velho")
 
-    conjunge = npc("Eva", "Feminino", "Parceira de Cópula")
+    # conjunge = npc("Eva", "Feminino", "Parceira de Cópula")
  

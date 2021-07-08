@@ -1,5 +1,4 @@
 class Tempo:
-    
 
     def __init__(self):
         self.dia = 1
@@ -17,15 +16,12 @@ class Tempo:
 
         return self.hora
 
+
     def avancarDia(self):
         self.dia += 1 
 
-
-    def fimDoTempo(self):
-
-        if self.dia == 3:
-            return False 
-
+    
+       
        
         
 

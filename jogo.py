@@ -1,20 +1,24 @@
 from tempo import Tempo
+from interface import Interface
 from personagemPrincipal import PersonagemPrincipal
 
 class Jogo:
 
     personagem = PersonagemPrincipal("L.U.C.A", "M")
-    tempo = Tempo()
-
+    interface = Interface()
+    
     def __init__(self):
         pass
         
 
     def tarefas(self):
 
+        self.interface.introducao()
+
         continuar = True
-        while continuar:
-    
+        while continuar == True:
+
+            
             print("LISTA DE TAREFAS")    
             print()
             print("1 - Buscar alimentos")
@@ -23,21 +27,35 @@ class Jogo:
             
             resposta = int(input())
 
-
             if resposta == 1:
-                self.personagem.buscarAlimento()
-                
-            elif resposta == 2 :
+                self.personagem.buscarAlimento()   
+            elif resposta == 2:
                 self.personagem.buscarEquipamentos()
 
-            
-            c = self.tempo.fimDoTempo()
-            continuar = c
+
+            if self.personagem.buscarAlimento() == False:
+                self.fimDoJogo()
+                continuar = False
+            elif self.personagem.buscarEquipamentos() == False:
+                self.fimDoJogo()
+                continuar = False
+   
+                
+                
+
+    def fimDoJogo(self):
+
+        if self.personagem.inventario ["Alimento"] >= 20 and self.personagem.inventario ["Equipamento"] >= 20:
+            return self.interface.venceu
+        elif self.personagem.inventario ["Alimento"] >= 20 and self.personagem.inventario ["Equipamento"] < 20:
+            return self.interface.perder1()
+        elif self.personagem.inventario ["Alimento"] < 20 and self.personagem.inventario ["Equipamento"] >= 20:
+            return self.interface.perder2()
+        else:
+            return self.interface.perder3()
 
 
-    def encerramento(self):
-
-        print("fim de jogo")     
+    
 
         
         
