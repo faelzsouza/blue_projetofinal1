@@ -3,8 +3,6 @@ from tempo import Tempo
 import random
 
 class PersonagemPrincipal(Personagem):
-
-    # metodo trabalho
     
     tempo = Tempo()
 
@@ -25,27 +23,52 @@ class PersonagemPrincipal(Personagem):
             print("Digite 2 para pedir comida da rua")
             print("Digite 3 para roubar do vizinho")
 
-            resposta = int(input())
-            
+            try:
+                resposta = int(input())
+            except:
+                print("Opção invalida")
+                self.buscarAlimento()
+
             # gasto de stamina de acordo com a escolha da ação
-            if resposta == 1:
+            if resposta == 1 and self.stamina >= 3:
                 self.stamina -= 3
                 self.tempo.passarHora(9)
-            elif resposta == 2:
+            elif resposta == 2 and self.stamina >= 1:
                 self.stamina -= 1
                 self.tempo.passarHora(9)
-            elif resposta == 3:
+            elif resposta == 3 and self.stamina >= 3:
                 self.stamina -= 2     
                 self.tempo.passarHora(9)
-                print("Você conseguiu entrar na casa da vizinha Hebe, cuidado para não acordá-la")
-                self.eventoestoque()
             else:
                 print("Opa! Parece que você não tem stamina para concluir essa tarefa")
                 if self.inventario ["Alimento"] > 0:             
-                    print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer para se recuperar? S/N")
+                    print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? S/N")
                     resp = input()
                     if resp == 's' : 
-                        self.comer()      
+                        print("Digite a quantidade de alimentos para comer: ")
+                        c = int(input())
+                        if c > self.inventario ["Alimento"]:
+                            self.comer(c)      
+                        else:
+                            print("quantidade maior do que vc possui!")
+                    elif resp == 'n':
+                        print("Deseja dormir para recuperar stamina?")
+                        resp = input()
+                        if resp == 's':
+                            print("quantas horas deseja dormir?")
+                            descanso = int(input())
+                            self.dormir(descanso)
+                            print("falso")
+                            continuar = False
+                        else:
+                            print("falso")
+                            continuar = False                               
+                else:      
+                    print("Vc não tem mais energia para continuar, hora de ninar, qtas horas: ")        
+                    descanso = int(input())
+                    self.dormir(descanso)
+                    print("falso")
+                    continuar = False  
 
 
             sorteio = random.randint(1,3)
@@ -61,9 +84,7 @@ class PersonagemPrincipal(Personagem):
             if resposta == sorteio:
                 self.inventario ["Alimento"] += a
 
-            print(self.inventario)    
-            print(self.stamina)
-
+            
             print("Deseja continuar? S/N") 
             resp = input()
             if resp == 's':
@@ -75,7 +96,11 @@ class PersonagemPrincipal(Personagem):
                     print("quantas horas deseja dormir?")
                     descanso = int(input())
                     self.dormir(descanso)
-                    continuar == False    
+                    print("falso")
+                    continuar = False 
+                else:
+                    print("falso")
+                    continuar = False       
 
             print()
             print()
@@ -98,7 +123,6 @@ class PersonagemPrincipal(Personagem):
             if resposta == 1 and self.stamina >= 2:
                 self.stamina -= 2
                 self.tempo.passarHora(9)
-                self.eventoCofre()
             elif resposta == 2 and self.stamina >= 5:
                 self.stamina -= 5
                 self.tempo.passarHora(9)
@@ -106,12 +130,30 @@ class PersonagemPrincipal(Personagem):
                 self.stamina -= 3  
                 self.tempo.passarHora(9)
             else:
-                print("Vc não tem stamina para concluir essa tarefa")
+                print("Opa! Parece que você não tem stamina para concluir essa tarefa")
                 if self.inventario ["Alimento"] > 0:             
-                    print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer para se recuperar? S/N")
+                    print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? S/N")
                     resp = input()
                     if resp == 's' : 
-                        self.comer()  
+                        print("Digite a quantidade de alimentos para comer: ")
+                        c = int(input())
+                        if c > self.inventario ["Alimento"]:
+                            self.comer(c)      
+                        else:
+                            print("quantidade maior do que vc possui!")
+                    elif resp == 'n':
+                        print("Deseja dormir para recuperar stamina?")
+                        resp = input()
+                        if resp == 's':
+                            print("quantas horas deseja dormir?")
+                            descanso = int(input())
+                            self.dormir(descanso)
+                            continuar == False                           
+                else:      
+                    print("Vc não tem mais energia para continuar, hora de ninar, qtas horas: ")        
+                    descanso = int(input())
+                    self.dormir(descanso)
+                    continuar == False  
                     
 
             sorteio = random.randint(1,3)
@@ -127,8 +169,6 @@ class PersonagemPrincipal(Personagem):
             if resposta == sorteio:
                 self.inventario ["Equipamento"] += e 
 
-            print(self.inventario)    
-            print(self.stamina)
 
             print("Deseja continuar? S/N") 
             resp = input()
@@ -163,11 +203,30 @@ class PersonagemPrincipal(Personagem):
 
         if self.stamina >= 10:
             self.stamina = 10
-            self.acordar()
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def acordar(self):
         if self.stamina >= 10:
             print("Você está com {self.estamina} pontos de stamina. Não está cansado! Tente fazer algumas tarefas")
+            print()
 
     def info(self):
 

@@ -10,4 +10,5 @@ def introducao():
         print("Felizmente, nosso herói L.U.C.A, conseguiu fazer os cálculos para uma viagem para um planeta azul na Via Láctea. Mas para finalizar o projeto ele precisa de ferramentas para a manutenção de sua nave, além de um estoque de comida para os dias que ficará no espaço! Você está pronto para ajudá-lo nesta jornada interestelar? \U0001F680")
 
 
-
+### if self.personagem.inventario ["Alimento"] >= 20 and self.personagem.inventario ["Equipamento"] >= 20:
+            

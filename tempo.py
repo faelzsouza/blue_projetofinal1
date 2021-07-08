@@ -21,6 +21,11 @@ class Tempo:
         self.dia += 1 
 
 
+    def fimDoTempo(self):
+
+        if self.dia == 3:
+            return False 
+
        
         
 

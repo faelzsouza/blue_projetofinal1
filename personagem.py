@@ -5,8 +5,4 @@ class Personagem:
         self.sexo = sexo
 
 
-class teste(Carlos)
-testeRafa = Personagem("Rafa", "M")
 
-    def testeFernando():
-        pass    
