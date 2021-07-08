@@ -1,3 +1,4 @@
+import personagemPrincipal
 # contar a historia do planeta e o que esta havendo e o pq que eles precisam fugir.
 class Interface:
 
@@ -12,16 +13,51 @@ class Interface:
 
 
         def venceu(self):
-                print("VENCEU")
+                if personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] >= 25 and personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] >= 25:
+                        print("Wow! Deu certo, apesar de todas as dificuldades, você foi capaz de fugir do planeta a tempo, em pouco tempo você estará entrando na atmosfera do planeta azul! Se prepare para a colisão!")
 
         def perder1(self):
-                print("sai do planeta e nave quebra")
+                if personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] >= 25 and personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] < 25:
+                        print("Puxa! Você conseguiu decolar, porém devido a salta de equipamento sua nave não teve impulso suficiente para chegar na atmosfera do planeta azul e agora está vagando no espaço.")
 
         def perder2(self):
-                print("sai do planete mas morre de fome")
+                if personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] < 25 and personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] >= 25:
+                        print("Puxa! Você conseguiu decolar, porém não levou alimento suficiente para a longa viagem... A nave vai chegar lá, mas você não...")
 
         def perder3(self):
-                print(" morre de radioatividade")                
+                if personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] < 25 and personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] < 25:
+                        print("Ah não! Infelizmente você não conseguiu montar a nave a tempo, a radioatividade tomou o planeta inteiro!")      
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        def final(self):
+                if personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] >= 25 and personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] >= 25:
+                        print("Wow! Deu certo, apesar de todas as dificuldades, você foi capaz de fugir do planeta a tempo, em pouco tempo você estará entrando na atmosfera do planeta azul! Se prepare para a colisão!")
+
+                elif personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] >= 25 and personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] < 25:
+                        print("Puxa! Você conseguiu decolar, porém devido a salta de equipamento sua nave não teve impulso suficiente para chegar na atmosfera do planeta azul e agora está vagando no espaço.")
+
+                elif personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] < 25 and personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] >= 25:
+                        print("Puxa! Você conseguiu decolar, porém não levou alimento suficiente para a longa viagem... A nave vai chegar lá, mas você não...")
+
+                elif personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] < 25 and personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] < 25:
+                        print("Ah não! Infelizmente você não conseguiu montar a nave a tempo, a radioatividade tomou o planeta inteiro!")           
 
 
             

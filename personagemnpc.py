@@ -1,5 +1,6 @@
 from personagem import Personagem
 import random
+import personagemPrincipal
 
 class Npc(Personagem):
     def __init__(self, nome, sexo, funcao = "npc"):
