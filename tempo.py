@@ -4,6 +4,14 @@ class Tempo:
         self.dia = 1
         self.hora = 8
         
+
+    def getDia(self):
+        return self.dia
+
+    def getHora(self):
+        return self.hora    
+
+
     def passarHora(self, valor):
         
         self.hora += valor
