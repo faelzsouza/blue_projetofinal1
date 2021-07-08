@@ -42,7 +42,7 @@ class Npc(Personagem):
         for i in range(5):
 
             senha = random.randint(0, 9)
-            chute = input("Digite o ultimo número que quer tentar: ")
+            chute = int(input("Digite o ultimo número que quer tentar: "))
 
             if senha == chute:
                 return 50
