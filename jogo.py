@@ -1,48 +1,54 @@
 from tempo import Tempo
+from interface import Interface
 from personagemPrincipal import PersonagemPrincipal
 
 class Jogo:
 
     personagem = PersonagemPrincipal("L.U.C.A", "M")
-    tempo = Tempo()
-
+    interface = Interface()
+    
     def __init__(self):
         pass
         
 
     def tarefas(self):
 
-        continuar = True
-        while continuar:
-            while True:
-                print("LISTA DE TAREFAS")    
-                print()
-                print("1 - Buscar alimentos")
-                print("2 - Buscar equipamentos")
-                print()
-                try:
-                    resposta = int(input())
-                    if resposta > 2 or resposta < 1:
-                        print('\nDigite um número válido!\n')
-                    else:
-                        break
-                except:
-                    print('\nOpção inválida!\n')
+        self.interface.introducao()
 
-            if resposta == 1:
-                self.personagem.buscarAlimento()
-                
-            elif resposta == 2 :
-                self.personagem.buscarEquipamentos()
+        
+        while self.personagem.relogio() < 3:
 
             
-            c = self.tempo.fimDoTempo()
-            continuar = c
+            print("LISTA DE TAREFAS")    
+            print()
+            print("1 - Buscar alimentos")
+            print("2 - Buscar equipamentos")
+            print()
+            
+            resposta = int(input())
+
+            if resposta == 1:
+                self.personagem.buscarAlimento()   
+            elif resposta == 2:
+                self.personagem.buscarEquipamentos()
+
+           
+        self.fimDoJogo()    
+                
+
+    def fimDoJogo(self):
+
+        if self.personagem.getAlimento() >= 20 and self.personagem.getEquipamento() >= 20:
+            return self.interface.venceu
+        elif self.personagem.getAlimento() >= 20 and self.personagem.getEquipamento() < 20:
+            return self.interface.perder1()
+        elif self.personagem.getAlimento() < 20 and self.personagem.getEquipamento() >= 20:
+            return self.interface.perder2()
+        else:
+            return self.interface.perder3()
 
 
-    def encerramento(self):
-
-        print("fim de jogo")     
+    
 
         
         
