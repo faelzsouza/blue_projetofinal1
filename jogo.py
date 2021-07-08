@@ -14,15 +14,20 @@ class Jogo:
 
         continuar = True
         while continuar:
-    
-            print("LISTA DE TAREFAS")    
-            print()
-            print("1 - Buscar alimentos")
-            print("2 - Buscar equipamentos")
-            print()
-            
-            resposta = int(input())
-
+            while True:
+                print("LISTA DE TAREFAS")    
+                print()
+                print("1 - Buscar alimentos")
+                print("2 - Buscar equipamentos")
+                print()
+                try:
+                    resposta = int(input())
+                    if resposta > 2 or resposta < 1:
+                        print('\nDigite um número válido!\n')
+                    else:
+                        break
+                except:
+                    print('\nOpção inválida!\n')
 
             if resposta == 1:
                 self.personagem.buscarAlimento()
