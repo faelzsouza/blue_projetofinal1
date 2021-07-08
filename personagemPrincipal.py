@@ -2,6 +2,11 @@ from personagem import Personagem
 from tempo import Tempo
 import random
 from personagemnpc import npc
+vizinha = npc("Hebe Camargo", "Feminino", "vizinha")
+
+dono = npc("Xaropinho", "Masculino", "Dono do Ferro Velho")
+
+conjunge = npc("Eva", "Feminino", "Parceira de Cópula")
 
 class PersonagemPrincipal(Personagem):
 
@@ -38,7 +43,7 @@ class PersonagemPrincipal(Personagem):
             elif resposta == 3:
                 self.stamina -= 2     
                 self.tempo.passarHora(9)
-                print("Você conseguiu entrar na casa da vizinha Hebe, cuidado para não acordá-la")
+                print("Você conseguiu entrar na casa da vizinha {vizinha.nome}, cuidado para não acordá-la")
                 npc.eventoestoque()
             else:
                 print("Opa! Parece que você não tem stamina para concluir essa tarefa")

@@ -1,10 +1,12 @@
 from personagem import Personagem
+import random
+import personagemPrincipal
 
 class npc(Personagem):
     def __init__(self, nome, sexo, funcao = "npc"):
         super().__init__(nome, sexo)
         self.funcao = funcao
-
+    
     def abrirEstoque(self):
 
             print (f"Parece que Hebe tem um estoque de comida guardado! Quando você clica na fechadura eletrônica a seguinte mensagem aparece:\n 'Olá gracinha! para abrir o estoque responda a charada:\nMeu avô tem 5 filhos, cada filho tem 3 filhos. Quantos primos eu tenho?\nQue velha doida, né?\n")
@@ -13,7 +15,7 @@ class npc(Personagem):
             if resp == (12):
                 print
                 print("Deu certo!")
-                self.inventario ["Alimento"] += 50
+                personagemPrincipal.PersonagemPrincipal.inventario ["Alimento"] += 50
                 return
             else:
                 print("A senha está errada e o alarme disparou! É melhor você correr pra casa!")
@@ -36,8 +38,7 @@ class npc(Personagem):
 
 
     def abrirCofre(self):
-
-        print ("Vc achou um cofre..... ")
+        print ("Que sorte! No meio das pilhas de ferramentas você encontrou um cofre! Provavelmente é do dono Xaropinho\nEmbaixo do cofre está um papel escrito:\n'rapaiz... senha: 2683'\n(claramente, ele não entende muito de segurança, não é mesmo?) Mas parece que os ratos roeram o quinto número do papel. Vale a pena chutar alguns números para abrir o cofre!")
 
         for i in range(5):
 
@@ -45,14 +46,10 @@ class npc(Personagem):
             chute = input("Digite a senha: ")
 
             if senha == chute:
-                self.inventario ["Equipamento"] += 50
+                personagemPrincipal.PersonagemPrincipal.inventario ["Equipamento"] += 50
                 return
         
         print("Vc não conseguiu abrir o cofre... tururu! ")
 
-    vizinha = npc("Hebe Camargo", "Feminino", "vizinha")
 
-    dono = npc("Xaropinho", "Masculino", "Dono do Ferro Velho")
-
-    conjunge = npc("Eva", "Feminino", "Parceira de Cópula")
  
