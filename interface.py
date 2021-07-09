@@ -1,4 +1,3 @@
-import personagemPrincipal
 # Classe de diálogos com o usuário, introduzindo o enredo do game, do personagem principal e com algumas saídas de diálogo.
 class Interface:
 

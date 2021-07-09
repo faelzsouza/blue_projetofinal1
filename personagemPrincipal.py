@@ -8,7 +8,8 @@ import random
 #Classe que configura a dinâmica do personagem principal e suas possibilidade.
 class PersonagemPrincipal(Personagem):
 
-    npc = Npc("Maria", "F")
+    npc1 = Npc("Hebe", "F")
+    npc2= Npc("Xaropinho", "F")
     tempo = Tempo()
 
     def __init__(self, nome, sexo):
@@ -74,6 +75,7 @@ class PersonagemPrincipal(Personagem):
             elif resposta == 3 and self.stamina >= 3:
                 self.stamina -= 2     
                 self.tempo.passarHora(9)
+                self.estoqueNPC()
                 if self.tempo.getDia() >= 3:
                     return 
             else:
@@ -126,10 +128,7 @@ class PersonagemPrincipal(Personagem):
                         
                                                       
                 else:      
-                    print("Deseja dormir para recuperar energia?")
-                    resp = input()
-                                                        
-                else:    
+                                                                     
                     while True:  
                         print("Deseja dormir para recuperar energia? [S/N]")
                         resp = input()[0].lower().strip()
@@ -209,6 +208,7 @@ class PersonagemPrincipal(Personagem):
             if resposta == 1 and self.stamina >= 2:
                 self.stamina -= 2
                 self.tempo.passarHora(9)
+                self.cofreNPC()
                 if self.tempo.getDia() >= 3:
                     return 
             elif resposta == 2 and self.stamina >= 5:
@@ -354,15 +354,14 @@ class PersonagemPrincipal(Personagem):
 
     #Funções de inventário dos npc's.
     def estoqueNPC(self):
-
-        self.npc.eventoestoque()
-        self.inventario ["Alimento"] += self.npc.eventoestoque()
-
+        self.inventario ["Alimento"] += self.npc1.abrirEstoque()
+        
+        
 
     def cofreNPC(self):
-
-        self.npc.eventoCofre()
-        self.inventario ["Equipamento"] += self.npc.eventoCofre()
+        self.inventario ["Equipamento"] += self.npc2.abrirCofre()
+        
+      
 
 
     #Função de retorno do inventário. 
