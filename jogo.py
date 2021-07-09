@@ -1,4 +1,3 @@
-from tempo import Tempo
 from interface import Interface
 from personagemPrincipal import PersonagemPrincipal
 
