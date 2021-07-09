@@ -1,57 +1,59 @@
 from personagem import Personagem
+
 import random
-import personagemPrincipal
 
 class Npc(Personagem):
-    def __init__(self, nome, sexo, funcao = "npc"):
+    def __init__(self, nome, sexo):
         super().__init__(nome, sexo)
-        self.funcao = funcao
+        self.alimento = 50
+        self.cofre = 50
     
+
     def abrirEstoque(self):
+        v = 0
 
-            print (f"Parece que Hebe tem um estoque de comida guardado! Quando você clica na fechadura eletrônica a seguinte mensagem aparece:\n 'Olá gracinha! para abrir o estoque responda a charada:\nMeu avô tem 5 filhos, cada filho tem 3 filhos. Quantos primos eu tenho?\nQue velha doida, né?\n")
+        if self.alimento == 50:
+            sorteio = random.randint(0, 99)
+
+            if sorteio < 40:
+
+                print (f"Parece que Hebe tem um estoque de comida guardado! Quando você clica na fechadura eletrônica a seguinte mensagem aparece:\n 'Olá gracinha! para abrir o estoque responda a charada:\nMeu avô tem 5 filhos, cada filho tem 3 filhos. Quantos primos eu tenho?\nQue velha doida, né?\n")
+                
+                resp = int(input("De qualquer forma digite a resposta para abrir o cofre: "))
+                if resp == (12):
+                    print
+                    print("Deu certo!")
+                    self.alimento = 0
+                    v = 50
+                    return v
+                else:
+                    print("A senha está errada e o alarme disparou! É melhor você correr pra casa!")
             
-            resp = int(input("De qualquer forma digite a resposta para abrir o cofre: "))
-            if resp == (12):
-                print
-                print("Deu certo!")
-                return 50
-            else:
-                print("A senha está errada e o alarme disparou! É melhor você correr pra casa!")
-        
        
-    def eventoestoque(self):
-
-        sorteio = random.randint(0, 99)
-
-        if sorteio < 40:
-            self.abrirEstoque()
-
-    def eventoCofre(self):
-
-        lista = list(range(20))
-        sorteio = random.randint(0, 99)
-
-        if sorteio in lista:
-            self.abrirCofre()
-
 
     def abrirCofre(self):
-        print ("Que sorte! No meio das pilhas de ferramentas você encontrou um cofre! Provavelmente é do dono Xaropinho\nEmbaixo do cofre está um papel escrito:\n'rapaiz... senha: 2683'\n(claramente, ele não entende muito de segurança, não é mesmo?) Mas parece que os ratos roeram o quinto número do papel. Vale a pena chutar alguns números para abrir o cofre!")
+        v = 0
 
-        for i in range(5):
+        if self.cofre == 50:
 
-            senha = 1234
-            chute = input("Digite a senha: ")
+            lista = list(range(99))
+            sorteio = random.randint(0, 99)
 
-            if senha == chute:
-                return 50
-        
-        print("Vc não conseguiu abrir o cofre... tururu! ")
+            if sorteio in lista:
 
-    # vizinha = npc("Hebe Camargo", "Feminino", "vizinha")
+                print ("Que sorte! No meio das pilhas de ferramentas você encontrou um cofre! Provavelmente é do dono Xaropinho\nEmbaixo do cofre está um papel escrito:\n'rapaiz... senha: 2683'\n(claramente, ele não entende muito de segurança, não é mesmo?) Mas parece que os ratos roeram o quinto número do papel. Vale a pena chutar alguns números para abrir o cofre!")
 
-    # dono = npc("Xaropinho", "Masculino", "Dono do Ferro Velho")
+                for i in range(5):
 
-    # conjunge = npc("Eva", "Feminino", "Parceira de Cópula")
+                    senha = 1
+                    chute = int(input("Digite a senha: "))
+
+                    if senha == chute:
+                        self.cofre = 0
+                        print("Parabens!!! Você acertou a senha!!!")
+                        v = 50
+                        return v
+                    else:
+                        print("Vc não conseguiu abrir o cofre... tururu! ")
+            
  
