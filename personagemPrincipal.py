@@ -98,7 +98,7 @@ class PersonagemPrincipal(Personagem):
                      #Caso o usuário fique sem stamina deverá dormir para recuperar energia.
                     elif resp == 'n':
                         while True:
-                            print("Deseja dormir para recuperar energia?") 
+                            print("Deseja dormir para recuerar energia?") 
                             resp = input()[0].lower().strip()
                             if resp in ['s', 'n']:
                                 break
@@ -114,8 +114,8 @@ class PersonagemPrincipal(Personagem):
                                     print('Digite apenas números!')
                             self.dormir(d)
                             return
-                        elif resp == 'n' and self.stamina == 0:
-                            print("Você desmaiou de sono!") 
+                        elif resp == 'n':
+                            print("Vc desmaiou, pois não tem força") 
                             self.desmaiar()
                             return 
                         
