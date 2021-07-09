@@ -2,6 +2,7 @@ from tempo import Tempo
 from interface import Interface
 from personagemPrincipal import PersonagemPrincipal
 
+#Classe de execução do jogo. 
 class Jogo:
 
     personagem = PersonagemPrincipal("L.U.C.A", "M")
@@ -11,12 +12,12 @@ class Jogo:
         pass
         
 
-    def tarefas(self):
+    def tarefas(self): #função das tarefas que o usuário deve realizar no decorrer do jogo
 
         self.interface.introducao()
 
         
-        while self.personagem.relogio() < 3:
+        while self.personagem.relogio() < 3: #passagem do tempo do jogo
 
             
             print("LISTA DE TAREFAS")    
@@ -35,7 +36,7 @@ class Jogo:
            
         self.fimDoJogo()    
                 
-
+    #Função de monitoramento dos parametros de finalização do jogo. Alimento + Ferramentas + tempo
     def fimDoJogo(self):
 
         if self.personagem.getAlimento() >= 20 and self.personagem.getEquipamento() >= 20:

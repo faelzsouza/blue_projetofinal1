@@ -1,3 +1,4 @@
+#Classe dos personagens não jogáveis (non-player character)
 from personagem import Personagem
 import random
 import personagemPrincipal
@@ -7,6 +8,7 @@ class Npc(Personagem):
         super().__init__(nome, sexo)
         self.funcao = funcao
     
+    #Função de execução de um desafio extra.
     def abrirEstoque(self):
 
             print (f"Parece que Hebe tem um estoque de comida guardado! Quando você clica na fechadura eletrônica a seguinte mensagem aparece:\n 'Olá gracinha! para abrir o estoque responda a charada:\nMeu avô tem 5 filhos, cada filho tem 3 filhos. Quantos primos eu tenho?\nQue velha doida, né?\n")
@@ -19,13 +21,16 @@ class Npc(Personagem):
             else:
                 print("A senha está errada e o alarme disparou! É melhor você correr pra casa!")
         
-       
+       #Função que é chamada de modo aleatório e da a oportunidade ao usuário reseolver um desafio, caso ele consiga ganha pontuações extras, caso não consiga perde a oportunidade.
+
     def eventoestoque(self):
 
         sorteio = random.randint(0, 99)
 
         if sorteio < 40:
             self.abrirEstoque()
+
+           #Função que é chamada de modo aleatório e da a oportunidade ao usuário reseolver um desafio, caso ele consiga ganha pontuações extras, caso não consiga perde a oportunidade.
 
     def eventoCofre(self):
 
@@ -34,6 +39,8 @@ class Npc(Personagem):
 
         if sorteio in lista:
             self.abrirCofre()
+
+    #Função de execução de um desafio extra.
 
 
     def abrirCofre(self):

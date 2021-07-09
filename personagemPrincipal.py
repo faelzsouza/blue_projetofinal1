@@ -5,7 +5,7 @@ import random
 
 
 # from personagemnpc import npc
-
+#Classe que configura a dinâmica do personagem principal e suas possibilidade.
 class PersonagemPrincipal(Personagem):
 
     npc = Npc("Maria", "F")
@@ -16,19 +16,23 @@ class PersonagemPrincipal(Personagem):
         self.stamina = 10
         self.inventario = {"Alimento":0, "Equipamento":0}    
 
+        #Função de alimentação
+
     def getAlimento(self):
         return self.inventario  ["Alimento"]  
+
+        #Função de busca por ferramentas e equipamentos.
 
     def getEquipamento(self):
         return self.inventario ["Equipamento"]    
     
-
+    #Função de buscar alimentos para adicionar ao estoque do inventário
     def buscarAlimento(self):
 
         continuar = True
         while continuar == True and self.tempo.getDia() < 3:    
 
-            self.info()
+            self.info() #Informações do usuário sobre sua stamina e inventário
 
             print("Digite 1 para ir caçar")
             print("Digite 2 para pedir comida da rua")
@@ -40,7 +44,7 @@ class PersonagemPrincipal(Personagem):
                 print("Opção invalida")
                 self.buscarAlimento()
 
-            # gasto de stamina de acordo com a escolha da ação
+            # gasto de stamina varia de acordo com a escolha da ação, ações mais garantidas gastam mais stamina.
             if resposta == 1 and self.stamina >= 3:
                 self.stamina -= 3
                 self.tempo.passarHora(9)
@@ -73,8 +77,9 @@ class PersonagemPrincipal(Personagem):
                         else:
                             print("quantidade maior do que vc possui! Digite novamente")
                     
+                     #Caso o usuário fique sem stamina deverá dormir para recuperar energia.
                     elif resp == 'n':
-                        print("Deseja dormir para recuerar energia?")
+                        print("Deseja dormir para recuperar energia?")
                         resp = input()
                         if resp == 's':
                             print("quantas horas deseja dormir?")
@@ -86,9 +91,9 @@ class PersonagemPrincipal(Personagem):
                             self.desmaiar()
                             return 
                         
-                                                        
+                                                      
                 else:      
-                    print("Deseja dormir para recuerar energia?")
+                    print("Deseja dormir para recuperar energia?")
                     resp = input()
                     if resp == 's':
                         print("quantas horas deseja dormir?")
@@ -100,10 +105,10 @@ class PersonagemPrincipal(Personagem):
                         self.desmaiar()
                         return
 
+            # quantidade de alimento conseguida na ação, varia de acordo com o resultado do sorteio:
 
             sorteio = random.randint(1,3)
 
-            # quantidade de alimento de acordo com o sorteio
             if sorteio == 1:
                 a = 7
             elif sorteio == 2:
@@ -127,7 +132,7 @@ class PersonagemPrincipal(Personagem):
             print()
 
 
-
+    #Função para buscar equipamentos 
     def buscarEquipamentos(self):
 
         continuar = True
@@ -205,10 +210,10 @@ class PersonagemPrincipal(Personagem):
                         self.desmaiar()
                         return
                     
+        # quantidade de equipamento varia de acordo com o sorteio.
 
             sorteio = random.randint(1,3)
 
-            # quantidade de equipamento de acordo com o sorteio
             if sorteio == 1:
                 e = 2
             elif sorteio == 2:
@@ -231,34 +236,33 @@ class PersonagemPrincipal(Personagem):
             print()            
                      
 
-
-    def relogio (self):
+    def relogio (self):     #Função de controle da passagem do tempo.
         return self.tempo.getDia()
 
 
-    def comer (self, comida):
+    def comer (self, comida): #função de busca de alimento para o inventário. 
         self.inventario ["Alimento"] -= comida       
         self.stamina += comida
 
         
-    def dormir(self, horasDormidas):
+    def dormir(self, horasDormidas): #Função usada para recuperar a stamina. 
         self.tempo.passarHora(horasDormidas)
         self.stamina += horasDormidas
         if self.stamina >= 10:
             self.stamina = 10
     
 
-    def desmaiar(self):
+    def desmaiar(self): #Função chamada quando o usuário fica compeltamente sem energia e não dorme.
         self.stamina = 8
         self.tempo.passarHora(8)
     
 
-    def acordar(self):
+    def acordar(self): #Função chamada quando a stamina volta aos valores máximos
         if self.stamina >= 10:
             print("Você está com {self.estamina} pontos de stamina. Não está cansado! Tente fazer algumas tarefas")
             print()
 
-
+    #Funções de inventário dos npc's.
     def estoqueNPC(self):
 
         self.npc.eventoestoque()
@@ -271,7 +275,7 @@ class PersonagemPrincipal(Personagem):
         self.inventario ["Equipamento"] += self.npc.eventoCofre()
 
 
-
+    #Função de retorno do inventário. 
     def info(self):
         print("inventário:", self.inventario)
         print("dia:", self.tempo.getDia())
