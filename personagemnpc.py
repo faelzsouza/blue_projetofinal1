@@ -54,7 +54,7 @@ class Npc(Personagem):
             if senha == chute:
                 return 50
         
-        print("Vc não conseguiu abrir o cofre... tururu! ")
+            else print("Vc não conseguiu abrir o cofre... tururu! ")
 
     # vizinha = npc("Hebe Camargo", "Feminino", "vizinha")
 
