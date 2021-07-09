@@ -132,10 +132,7 @@ class PersonagemPrincipal(Personagem):
                         
                                                       
                 else:      
-                    print("Deseja dormir para recuperar energia?")
-                    resp = input()
-                                                        
-                else:    
+                                                                     
                     while True:  
                         print("Deseja dormir para recuperar energia? [S/N]")
                         resp = input()[0].lower().strip()
@@ -361,16 +358,13 @@ class PersonagemPrincipal(Personagem):
 
     #Funções de inventário dos npc's.
     def estoqueNPC(self):
-
-        self.npc1.abrirEstoque()
-        # self.inventario ["Alimento"] += self.npc1.abrirEstoque()
-        print(self.npc1.abrirEstoque())
+        self.inventario ["Alimento"] += self.npc1.abrirEstoque()
+        
+        
 
     def cofreNPC(self):
-
-        self.npc2.abrirCofre()
-        # self.inventario ["Equipamento"] += self.npc2.abrirCofre()
-        print(self.npc2.abrirCofre())
+        self.inventario ["Equipamento"] += self.npc2.abrirCofre()
+        
       
 
 
@@ -381,8 +375,3 @@ class PersonagemPrincipal(Personagem):
         print("hora:", self.tempo.getHora())
         print("stamina:",self.stamina)
         print()
-
-    
-        
-
-    
