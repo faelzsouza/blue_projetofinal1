@@ -29,16 +29,21 @@ class PersonagemPrincipal(Personagem):
         while continuar == True and self.tempo.getDia() < 3:    
 
             self.info()
+            
+            while True:
+                print("Digite 1 para ir caçar")
+                print("Digite 2 para pedir comida da rua")
+                print("Digite 3 para roubar do vizinho")
 
-            print("Digite 1 para ir caçar")
-            print("Digite 2 para pedir comida da rua")
-            print("Digite 3 para roubar do vizinho")
-
-            try:
-                resposta = int(input())
-            except:
-                print("Opção invalida")
-                self.buscarAlimento()
+                try:
+                    resposta = int(input())
+                    if 0 < resposta < 4:
+                        break
+                    else:
+                        print('\nOpção inválida!\n')
+                except:
+                    print("\nDigite apenas números!\n")
+                    self.buscarAlimento()
 
             # gasto de stamina de acordo com a escolha da ação
             if resposta == 1 and self.stamina >= 3:
@@ -62,9 +67,14 @@ class PersonagemPrincipal(Personagem):
                 
                 print("Opa! Parece que você não tem stamina para concluir essa tarefa")
                 if self.inventario ["Alimento"] > 0:             
-                    
-                    print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? S/N")
-                    resp = input()
+                    while True:
+                        print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? S/N")
+                        resp = input()[0].lower().strip()
+                        if resp in ['s', 'n']:
+                            break
+                        else:
+                            print('\nOpção Inválida!\n')
+
                     if resp == 's': 
                         print("Digite a quantidade de alimentos para comer: ")
                         c = int(input())
@@ -74,11 +84,21 @@ class PersonagemPrincipal(Personagem):
                             print("quantidade maior do que vc possui! Digite novamente")
                     
                     elif resp == 'n':
-                        print("Deseja dormir para recuerar energia?")
-                        resp = input()
+                        while True:
+                            print("Deseja dormir para recuerar energia?") 
+                            resp = input()[0].lower().strip()
+                            if resp in ['s', 'n']:
+                                break
+                            else:
+                                print('\nOpção Inválida!\n')
                         if resp == 's':
-                            print("quantas horas deseja dormir?")
-                            d = int(input())
+                            while True:
+                                print("Quantas horas deseja dormir?")
+                                try:
+                                    d = int(input())
+                                    break
+                                except:
+                                    print('Digite apenas números!')
                             self.dormir(d)
                             return
                         elif resp == 'n':
@@ -87,16 +107,26 @@ class PersonagemPrincipal(Personagem):
                             return 
                         
                                                         
-                else:      
-                    print("Deseja dormir para recuerar energia?")
-                    resp = input()
+                else:    
+                    while True:  
+                        print("Deseja dormir para recuperar energia? [S/N]")
+                        resp = input()[0].lower().strip()
+                        if resp in ['s', 'n']:
+                            break
+                        else:
+                            print('\nOpção Inválida!\n')
                     if resp == 's':
-                        print("quantas horas deseja dormir?")
-                        d = int(input())
+                        while True:
+                            print("Quantas horas deseja dormir?")
+                            try:
+                                d = int(input())
+                                break
+                            except:
+                                print('Digite apenas números!')
                         self.dormir(d)
                         return
                     elif resp == 'n':
-                        print("Vc desmaiou, pois não tem força") 
+                        print("Você desmaiou de sono!") 
                         self.desmaiar()
                         return
 
@@ -115,9 +145,13 @@ class PersonagemPrincipal(Personagem):
                 self.inventario ["Alimento"] += a
 
             
-            
-            print("Deseja continuar?") 
-            resp = input()
+            while True:
+                print("Deseja continuar?") 
+                resp = input()[0].lower().strip()
+                if resp in ['s', 'n']:
+                    break
+                else:
+                    print('\nOpção Inválida!\n')
             if resp == 's':
                 continuar = True
             elif resp == 'n':
@@ -141,8 +175,12 @@ class PersonagemPrincipal(Personagem):
 
             try:
                 resposta = int(input())
+                if 0 < resposta < 4:
+                    break
+                else:
+                    print('\nOpção inválida!\n')
             except:
-                print("Opção invalida")
+                print("\nDigite apenas números!\n")
                 self.buscarEquipamentos()
             
             # gasto de stamina de acordo com a escolha da ação
@@ -169,39 +207,70 @@ class PersonagemPrincipal(Personagem):
                 if self.inventario ["Alimento"] > 0:             
                     
                     print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? S/N")
-                    resp = input()
-                    if resp == 's': 
-                        print("Digite a quantidade de alimentos para comer: ")
-                        c = int(input())
-                        if c < self.inventario ["Alimento"]:
-                            self.comer(c)      
+                    while True:
+                        resp = input()[0].lower().strip()
+                        if resp in ['s', 'n']:
+                            break
                         else:
-                            print("quantidade maior do que vc possui! Digite novamente")
+                            print('\nOpção Inválida!\n')
+                    if resp == 's': 
+                        while True:
+                            print("Digite a quantidade de alimentos para comer: ")
+                            try:
+                                c = int(input())
+                                if c < 1 or c > self.inventario['Alimento']:
+                                    print('\nDigite uma quantidade válida!\n')
+                                else:
+                                    break
+                            except:
+                                print('\nDigite apenas números!\n')
+
+                        self.comer(c)      
                     
                     elif resp == 'n':
-                        print("Deseja dormir para recuerar energia?")
-                        resp = input()
+                        print("Deseja dormir para recuperar energia? [S/N]")
+                        while True:
+                            resp = input()[0].lower().strip()
+                            if resp in ['s', 'n']:
+                                break
+                            else:
+                                print('\nOpção Inválida!\n')
                         if resp == 's':
-                            print("quantas horas deseja dormir?")
-                            d = int(input())
+                            while True:
+                                print("Quantas horas deseja dormir?")
+                                try:
+                                    d = int(input())
+                                    break
+                                except:
+                                    print('Digite apenas números!')
                             self.dormir(d)
                             return
-                        elif resp == 'n':
-                            print("Vc desmaiou, pois não tem força") 
+                        elif resp == 'n' and self.stamina == 0:
+                            print("Você desmaiou de sono!") 
                             self.desmaiar()
                             return
                         
                                                         
                 else:      
-                    print("Deseja dormir para recuerar energia?")
-                    resp = input()
+                    while True:
+                        print("Deseja dormir para recuperar energia?")
+                        resp = input()[0].lower().strip()
+                        if resp in ['s', 'n']:
+                            break
+                        else:
+                            print('\nOpção Inválida!\n')
                     if resp == 's':
-                        print("quantas horas deseja dormir?")
-                        d = int(input())
+                        while True:
+                            print("Quantas horas deseja dormir?")
+                            try:
+                                d = int(input())
+                                break
+                            except:
+                                print('Digite apenas números!')
                         self.dormir(d)
                         return
-                    elif resp == 'n':
-                        print("Vc desmaiou, pois não tem força") 
+                    elif resp == 'n' and self.stamina == 0:
+                        print("Vc desmaiou desmaiou de sono!") 
                         self.desmaiar()
                         return
                     
@@ -219,9 +288,13 @@ class PersonagemPrincipal(Personagem):
             if resposta == sorteio:
                 self.inventario ["Equipamento"] += e 
 
-
-            print("Deseja continuar?") 
-            resp = input()
+            while True:
+                print("Deseja continuar?") 
+                resp = input()[0].lower().strip()
+                if resp in ['s', 'n']:
+                    break
+                else:
+                    print('\nOpção Inválida!\n')
             if resp == 's':
                 continuar = True
             elif resp == 'n':
