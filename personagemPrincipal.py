@@ -33,17 +33,6 @@ class PersonagemPrincipal(Personagem):
         while continuar == True and self.tempo.getDia() < 3:    
 
             self.info() #Informações do usuário sobre sua stamina e inventário
-
-            print("Digite 1 para ir caçar")
-            print("Digite 2 para pedir comida da rua")
-            print("Digite 3 para roubar do vizinho")
-
-            try:
-                resposta = int(input())
-            except:
-                print("Opção invalida")
-                self.buscarAlimento()
-            self.info()
             
             while True:
                 print("Digite 1 para ir caçar")
@@ -83,7 +72,7 @@ class PersonagemPrincipal(Personagem):
                 print("Opa! Parece que você não tem stamina para concluir essa tarefa")
                 if self.inventario ["Alimento"] > 0:             
                     while True:
-                        print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? S/N")
+                        print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? [S/N]")
                         resp = input()[0].lower().strip()
                         if resp in ['s', 'n']:
                             break
@@ -104,8 +93,6 @@ class PersonagemPrincipal(Personagem):
                     
                      #Caso o usuário fique sem stamina deverá dormir para recuperar energia.
                     elif resp == 'n':
-                        print("Deseja dormir para recuperar energia?")
-                        resp = input()
                         while True:
                             print("Deseja dormir para recuperar energia?") 
                             resp = input()[0].lower().strip()
@@ -130,10 +117,6 @@ class PersonagemPrincipal(Personagem):
                         
                                                       
                 else:      
-                    print("Deseja dormir para recuperar energia?")
-                    resp = input()
-                                                        
-                else:    
                     while True:  
                         print("Deseja dormir para recuperar energia? [S/N]")
                         resp = input()[0].lower().strip()
@@ -181,7 +164,7 @@ class PersonagemPrincipal(Personagem):
             if resp == 's':
                 continuar = True
             elif resp == 'n':
-                continuar = False  
+                continuar = False
 
             print()
             print()
@@ -194,22 +177,23 @@ class PersonagemPrincipal(Personagem):
         while continuar == True and self.tempo.getDia() < 3:    
             
             self.info()
+            # Menu buscar equipamentos
+            while True:
+                print("Digite 1 para buscar no ferro velho")
+                print("Digite 2 para fabricar peças")
+                print("Digite 3 para roubar peças")
 
-            print("Digite 1 para buscar no ferro velho")
-            print("Digite 2 para fabricar peças")
-            print("Digite 3 para roubar peças")
-
-            try:
-                resposta = int(input())
-                if 0 < resposta < 4:
-                    break
-                else:
-                    print('\nOpção inválida!\n')
-            except:
-                print("\nDigite apenas números!\n")
-                self.buscarEquipamentos()
+                try:
+                    resposta = int(input())
+                    if 0 < resposta < 4:
+                        break
+                    else:
+                        print('\nOpção inválida!\n')
+                except:
+                    print("\nDigite apenas números!\n")
+                    self.buscarEquipamentos()
             
-            # gasto de stamina de acordo com a escolha da ação
+            # Gasto de stamina de acordo com a escolha da ação
             if resposta == 1 and self.stamina >= 2:
                 self.stamina -= 2
                 self.tempo.passarHora(9)
@@ -231,9 +215,8 @@ class PersonagemPrincipal(Personagem):
                 
                 print("Opa! Parece que você não tem stamina para concluir essa tarefa")
                 if self.inventario ["Alimento"] > 0:             
-                    
-                    print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? S/N")
                     while True:
+                        print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? S/N")
                         resp = input()[0].lower().strip()
                         if resp in ['s', 'n']:
                             break
@@ -254,8 +237,8 @@ class PersonagemPrincipal(Personagem):
                         self.comer(c)      
                     
                     elif resp == 'n':
-                        print("Deseja dormir para recuperar energia? [S/N]")
                         while True:
+                            print("Deseja dormir para recuperar energia? [S/N]")
                             resp = input()[0].lower().strip()
                             if resp in ['s', 'n']:
                                 break

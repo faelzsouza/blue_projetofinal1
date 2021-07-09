@@ -20,7 +20,7 @@ class Jogo:
         while self.personagem.relogio() < 3: #passagem do tempo do jogo
 
             while True:
-                print("LISTA DE TAREFAS")    
+                print(f"{'LISTA DE TAREFAS':^23}")    
                 print()
                 print("1 - Buscar alimentos")
                 print("2 - Buscar equipamentos")
