@@ -76,16 +76,20 @@ class PersonagemPrincipal(Personagem):
                             print('\nOpção Inválida!\n')
 
                     if resp == 's': 
-                        print("Digite a quantidade de alimentos para comer: ")
-                        c = int(input())
-                        if c < self.inventario ["Alimento"]:
-                            self.comer(c)      
-                        else:
-                            print("quantidade maior do que vc possui! Digite novamente")
+                        while True:
+                            print("Digite a quantidade de alimentos para comer: ")
+                            try:
+                                c = int(input())
+                                if c < 1 or c > self.inventario['Alimento']:
+                                    print('\nDigite uma quantidade válida!\n')
+                                else:
+                                    break
+                            except:
+                                print('\nDigite apenas números!\n')
                     
                     elif resp == 'n':
                         while True:
-                            print("Deseja dormir para recuerar energia?") 
+                            print("Deseja dormir para recuperar energia?") 
                             resp = input()[0].lower().strip()
                             if resp in ['s', 'n']:
                                 break
@@ -101,8 +105,8 @@ class PersonagemPrincipal(Personagem):
                                     print('Digite apenas números!')
                             self.dormir(d)
                             return
-                        elif resp == 'n':
-                            print("Vc desmaiou, pois não tem força") 
+                        elif resp == 'n' and self.stamina == 0:
+                            print("Você desmaiou de sono!") 
                             self.desmaiar()
                             return 
                         
