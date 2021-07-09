@@ -91,23 +91,19 @@ class PersonagemPrincipal(Personagem):
                             print('\nOpção Inválida!\n')
 
                     if resp == 's': 
-                        while True:
-                            print("Digite a quantidade de alimentos para comer: ")
-                            try:
-                                c = int(input())
-                                if c < 1 or c > self.inventario['Alimento']:
-                                    print('\nDigite uma quantidade válida!\n')
-                                else:
-                                    break
-                            except:
-                                print('\nDigite apenas números!\n')
+                        print("Digite a quantidade de alimentos para comer: ")
+                        c = int(input())
+                        if c < self.inventario ["Alimento"]:
+                            self.comer(c)      
+                        else:
+                            print("quantidade maior do que vc possui! Digite novamente")
                     
                      #Caso o usuário fique sem stamina deverá dormir para recuperar energia.
                     elif resp == 'n':
                         print("Deseja dormir para recuperar energia?")
                         resp = input()
                         while True:
-                            print("Deseja dormir para recuperar energia?") 
+                            print("Deseja dormir para recuerar energia?") 
                             resp = input()[0].lower().strip()
                             if resp in ['s', 'n']:
                                 break
@@ -123,8 +119,8 @@ class PersonagemPrincipal(Personagem):
                                     print('Digite apenas números!')
                             self.dormir(d)
                             return
-                        elif resp == 'n' and self.stamina == 0:
-                            print("Você desmaiou de sono!") 
+                        elif resp == 'n':
+                            print("Vc desmaiou, pois não tem força") 
                             self.desmaiar()
                             return 
                         
@@ -371,13 +367,10 @@ class PersonagemPrincipal(Personagem):
 
     #Função de retorno do inventário. 
     def info(self):
-        print("inventário:", self.inventario)
-        print("dia:", self.tempo.getDia())
-        print("hora:", self.tempo.getHora())
-        print("stamina:",self.stamina)
+        print("Aqui estão as suas informações essenciais, elas permitem que você planeje suas tarefas, fique atento a elas!")
+        print(f"A quantidade de itens no seu inventário é: {PersonagemPrincipal.inventario}. Você precisa de no mínimo 25 itens de Alimento e 25 itens de Equipamentos para efetuar sua viagem com sucesso.")
+        temporestante = 5 - Tempo.getDia()
+        print(f"Hoje é dia: {Tempo.getDia()}, você tem apenas mais {temporestante} para finalizar suas tarefas!")
+        print(f"Agora são: {Tempo.getHora()} horas.")
+        print(f"Sua stamina é: {PersonagemPrincipal.stamina}")
         print()
-
-    
-        
-
-    
