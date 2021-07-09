@@ -1,3 +1,4 @@
+#Classe de atribuição das características dos personagens
 class Personagem:
 
     def __init__(self, nome, sexo):

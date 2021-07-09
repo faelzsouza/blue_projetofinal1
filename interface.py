@@ -1,5 +1,5 @@
 import personagemPrincipal
-# contar a historia do planeta e o que esta havendo e o pq que eles precisam fugir.
+# Classe de diálogos com o usuário, introduzindo o enredo do game, do personagem principal e com algumas saídas de diálogo.
 class Interface:
 
         def introducao(self):
@@ -7,11 +7,10 @@ class Interface:
 
                 print(f"Olá, que bom que você chegou, realmente precisamos de ajuda! Nibiru já foi um planeta desenvolvido e bem organizado, mas houve um acidente na usina nuclear da província de Namu que lançou material radioativo na atmosfera, desde então a radiação já se espalhou 70 por cento do planeta, e, segundo as previsões, em até 5 dias essas toxinas chegarão até aqui!\n")
 
-                # E contar o começo da hostoria do personagem...
                 #Luca acrônimo de Last Universal Common Ancestor
                 print("Felizmente, nosso herói L.U.C.A, conseguiu fazer os cálculos para uma viagem para um planeta azul na Via Láctea. Mas para finalizar o projeto ele precisa de ferramentas para a manutenção de sua nave, além de um estoque de comida para os dias que ficará no espaço! Você está pronto para ajudá-lo nesta jornada interestelar? \U0001F680")
 
-
+        #Funções de retorno ao usuários das finalizações do jogo:
         def venceu(self):
                 print("Wow! Deu certo, apesar de todas as dificuldades, você foi capaz de fugir do planeta a tempo, em pouco tempo você estará entrando na atmosfera do planeta azul! Se prepare para a colisão!")
 
