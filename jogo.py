@@ -12,13 +12,21 @@ class Jogo:
         
 
     def tarefas(self): #função das tarefas que o usuário deve realizar no decorrer do jogo
-
+        
         self.interface.introducao()
-
+        input()
+        print()
+        print("\033c")
+        self.interface.instrucoes()
+        input()
+        print()
+        print("\033c")
         
         while self.personagem.relogio() < 3: #passagem do tempo do jogo
 
             while True:
+                print("\033c")
+                print()
                 print(f"{'LISTA DE TAREFAS':^23}")    
                 print()
                 print("1 - Buscar alimentos")
@@ -38,14 +46,15 @@ class Jogo:
             elif resposta == 2:
                 self.personagem.buscarEquipamentos()
 
-           
+        print("\033c")   
+        print()
         self.fimDoJogo()    
                 
     #Função de monitoramento dos parametros de finalização do jogo. Alimento + Ferramentas + tempo
     def fimDoJogo(self):
 
         if self.personagem.getAlimento() >= 20 and self.personagem.getEquipamento() >= 20:
-            return self.interface.venceu
+            return self.interface.venceu()
         elif self.personagem.getAlimento() >= 20 and self.personagem.getEquipamento() < 20:
             return self.interface.perder1()
         elif self.personagem.getAlimento() < 20 and self.personagem.getEquipamento() >= 20:

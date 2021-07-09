@@ -11,6 +11,8 @@ class PersonagemPrincipal(Personagem):
     npc1 = Npc("Hebe", "F")
     npc2= Npc("Xaropinho", "F")
     tempo = Tempo()
+    cont1 = 0
+    cont2 = 0
 
     def __init__(self, nome, sexo):
         super().__init__(nome, sexo)
@@ -32,13 +34,12 @@ class PersonagemPrincipal(Personagem):
 
         continuar = True
         while continuar == True and self.tempo.getDia() < 3:    
-
-            self.info() #Informações do usuário sobre sua stamina e inventário
             
             while True:
                 print("Digite 1 para ir caçar")
                 print("Digite 2 para pedir comida da rua")
                 print("Digite 3 para roubar do vizinho")
+                print()
 
                 try:
                     resposta = int(input())
@@ -71,7 +72,7 @@ class PersonagemPrincipal(Personagem):
 
                 resposta = 0
                 
-                print("Opa! Parece que você não tem stamina para concluir essa tarefa")
+                print("Opa! Parece que você não tem stamina para concluir essa tarefa\n")
                 if self.inventario ["Alimento"] > 0:             
                     while True:
                         print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? [S/N]")
@@ -89,6 +90,7 @@ class PersonagemPrincipal(Personagem):
                                 if c < 1 or c > self.inventario['Alimento']:
                                     print('\nDigite uma quantidade válida!\n')
                                 else:
+                                    self.comer(c)
                                     break
                             except:
                                 print('\nDigite apenas números!\n')
@@ -156,6 +158,7 @@ class PersonagemPrincipal(Personagem):
             if resposta == sorteio:
                 self.inventario ["Alimento"] += a
 
+            self.info() #Informações do usuário sobre sua stamina e inventário
             
             while True:
                 print("Deseja continuar?") 
@@ -169,8 +172,11 @@ class PersonagemPrincipal(Personagem):
             elif resp == 'n':
                 continuar = False
 
+            print("\033c")
             print()
+            self.info() #Informações do usuário sobre sua stamina e inventário
             print()
+
 
 
     #Função para buscar equipamentos 
@@ -185,6 +191,7 @@ class PersonagemPrincipal(Personagem):
                 print("Digite 1 para buscar no ferro velho")
                 print("Digite 2 para fabricar peças")
                 print("Digite 3 para roubar peças")
+                print()
 
                 try:
                     resposta = int(input())
@@ -217,7 +224,7 @@ class PersonagemPrincipal(Personagem):
 
                 resposta = 0
                 
-                print("Opa! Parece que você não tem stamina para concluir essa tarefa")
+                print("Opa! Parece que você não tem stamina para concluir essa tarefa\n")
                 if self.inventario ["Alimento"] > 0:             
                     while True:
                         print(f"Vc tem {self.inventario ['Alimento']} alimento. Deseja comer? S/N")
@@ -234,6 +241,7 @@ class PersonagemPrincipal(Personagem):
                                 if c < 1 or c > self.inventario['Alimento']:
                                     print('\nDigite uma quantidade válida!\n')
                                 else:
+                                    self.comer(c)
                                     break
                             except:
                                 print('\nDigite apenas números!\n')
@@ -301,6 +309,8 @@ class PersonagemPrincipal(Personagem):
             if resposta == sorteio:
                 self.inventario ["Equipamento"] += e 
 
+            self.info() #Informações do usuário sobre sua stamina e inventário
+
             while True:
                 print("Deseja continuar?") 
                 resp = input()[0].lower().strip()
@@ -311,10 +321,12 @@ class PersonagemPrincipal(Personagem):
             if resp == 's':
                 continuar = True
             elif resp == 'n':
-                continuar = False  
-        
+                continuar = False 
+
+            print("\033c")     
+            self.info() #Informações do usuário sobre sua stamina e inventário
             print()
-            print()            
+          
                      
 
     def relogio (self):     #Função de controle da passagem do tempo.
@@ -345,20 +357,32 @@ class PersonagemPrincipal(Personagem):
 
     #Funções de inventário dos npc's.
     def estoqueNPC(self):
-        self.inventario ["Alimento"] += self.npc1.abrirEstoque()
+        if self.cont1 == 0:
+            v = self.npc1.abrirEstoque()
+            if v != None:
+                self.inventario ["Alimento"] += v
+                self.cont1 +=1
         
         
 
     def cofreNPC(self):
-        self.inventario ["Equipamento"] += self.npc2.abrirCofre()
-        
+        if self.cont2 == 0:
+            v = self.npc2.abrirCofre()
+            if v != None:
+                self.inventario ["Equipamento"] += v
+                self.cont2 +=1        
       
 
 
     #Função de retorno do inventário. 
     def info(self):
-        print("inventário:", self.inventario)
-        print("dia:", self.tempo.getDia())
-        print("hora:", self.tempo.getHora())
-        print("stamina:",self.stamina)
+
+        print("Aqui estão as suas informações essenciais, elas permitem que você planeje suas tarefas, fique atento a elas!")
+        print()
+        print(f"A quantidade de itens no seu inventário é: {self.inventario}. \nVocê precisa de no mínimo 25 itens de Alimento e 25 itens de Equipamentos para efetuar sua viagem com sucesso.")
+        tempoRestante = 5 - self.tempo.getDia()
+        print(f"Hoje é dia: {self.tempo.getDia()}, você tem apenas mais {tempoRestante} para finalizar suas tarefas!")
+        print()
+        print(f"Agora são: {self.tempo.getHora()} horas.")
+        print(f"Sua stamina é: {self.stamina}")
         print()
