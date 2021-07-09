@@ -41,8 +41,8 @@ class Npc(Personagem):
 
         for i in range(5):
 
-            senha = 1234
-            chute = input("Digite a senha: ")
+            senha = random.randint(0, 9)
+            chute = int(input("Digite o ultimo número que quer tentar: "))
 
             if senha == chute:
                 return 50
